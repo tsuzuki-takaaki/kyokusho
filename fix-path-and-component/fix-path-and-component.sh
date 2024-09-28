@@ -16,6 +16,11 @@ mv $old_file_path $new_file_path
 gsed -i "s/$old_component_name/$new_component_name/g" $new_file_path
 
 # Dangerous check
+echo "---------- Dangerous check with component name ----------"
+git grep "${old_component_name}" .
+
+echo "---------- Dangerous check with last directory name ----------"
+git grep "$(basename $(dirname $old_file_path))" .
 
 # Clean directory if the directory is empty
 rmdir -p $(dirname $old_file_path)
