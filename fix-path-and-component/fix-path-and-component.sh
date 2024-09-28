@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 read -p "path(from): " old_file_path
@@ -12,6 +11,9 @@ mkdir -p $(dirname $new_file_path)
 
 # Move from old_file_path new_file_path
 mv $old_file_path $new_file_path
+
+# Replace old component name with new component name
+gsed -i "s/$old_component_name/$new_component_name/g" $new_file_path
 
 # Dangerous check
 
