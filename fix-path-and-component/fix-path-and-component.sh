@@ -7,8 +7,13 @@ read -p "path(to): " new_file_path
 read -p "component name(from): " old_component_name
 read -p "component name(to): " new_component_name
 
-echo $old_file_path
-cat $old_file_path
-echo $new_file_path
-echo $old_component_name
-echo $new_component_name
+# Make directory recursively for new file path
+mkdir -p $(dirname $new_file_path)
+
+# Move from old_file_path new_file_path
+mv $old_file_path $new_file_path
+
+# Dangerous check
+
+# Clean directory if the directory is empty
+rmdir -p $(dirname $old_file_path)
